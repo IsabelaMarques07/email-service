@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Table } from 'reactstrap'
+import { Button, Table, Toast, ToastBody, ToastHeader } from 'reactstrap'
 export default function Products() {
 
     const [productsList, setProductsList] = useState([]);
@@ -21,20 +21,16 @@ export default function Products() {
             return(
                 productsList.map(product => {
                     return (
-                        <tr>
-                            <td>
-                                {product.title}
-                            </td>
-                            <td>
-                                {product.description}
-                            </td>
-                            <td>
-                                {product.price}
-                            </td>
-                            <td>
-                                {product.active? 'Disponível' : 'Indisponível'}
-                            </td>
-                        </tr>
+                        <Toast className= "card">
+                        <ToastHeader className="card-header">
+                        {product.title}
+                        </ToastHeader>
+                        <ToastBody>
+                            <p>Descrição: {product.description}</p>
+                            <p>Preço: R${product.price}</p>
+                            <p>{product.active? 'Disponível' : 'Indisponível'}</p>
+                        </ToastBody>
+                    </Toast>
                     )
                 })
             )
@@ -46,28 +42,9 @@ export default function Products() {
         <>
             <h1>Produtos</h1>
             <Button href='/products/register'>Adicionar Produto</Button>
-            <Table
-            >
-                <thead>
-                    <tr>
-                        <th>
-                            Nome
-                        </th>
-                        <th>
-                           Descrição
-                        </th>
-                        <th>
-                            Preço
-                        </th>
-                        <th>
-                            Disponibilidade
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div className="container-cards">
                  {retornarProducts()}
-                </tbody>
-            </Table>
+            </div>
         </>
     )
 }

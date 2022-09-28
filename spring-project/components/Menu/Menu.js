@@ -4,9 +4,9 @@ export default function Menu() {
     return (
         <>
             <Navbar
-                color="dark"
                 expand="md"
-                dark >
+                light
+                className="menu" >
                 <NavbarBrand href="/">
                     Sprint Project
                 </NavbarBrand>

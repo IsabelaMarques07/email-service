@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Table } from 'reactstrap'
+import { Table, Toast, ToastBody, ToastHeader } from 'reactstrap'
 export default function Emails() {
 
     const [emailsList, setEmailsList] = useState([]);
@@ -21,20 +21,16 @@ export default function Emails() {
             return(
                 emailsList.map(email => {
                     return (
-                        <tr>
-                            <td>
-                                {email.emailTo}
-                            </td>
-                            <td>
-                                {email.emailFrom}
-                            </td>
-                            <td>
-                                {email.subject}
-                            </td>
-                            <td>
-                                {email.sendDateEmail}
-                            </td>
-                        </tr>
+                        <Toast className= "card">
+                            <ToastHeader className="card-header">
+                            {email.subject}
+                            </ToastHeader>
+                            <ToastBody>
+                                <p>De: {email.emailFrom}</p>
+                                <p>Para: {email.emailTo}</p>
+                                <p>Data: {email.sendDateEmail}</p>
+                            </ToastBody>
+                        </Toast>
                     )
                 })
             )
@@ -45,28 +41,10 @@ export default function Emails() {
     return (
         <>
             <h1>Emails</h1>
-            <Table
-            >
-                <thead>
-                    <tr>
-                        <th>
-                            Email To
-                        </th>
-                        <th>
-                            Email From
-                        </th>
-                        <th>
-                            Assunto
-                        </th>
-                        <th>
-                            Data
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                 {retornarEmails()}
-                </tbody>
-            </Table>
+            <div className="container-cards">
+                {retornarEmails()}
+            </div>
+            
         </>
     )
 }

@@ -19,12 +19,39 @@ a {
   margin-top: 5vh;
 }
 
+.menu{
+  background-color: #21D4FD;
+  background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+}
+
+.card{
+  min-width: 16vw;
+  margin-bottom: 2vw;
+  color: rgb(228, 228, 228);
+  background-color: rgb(49, 49, 49);
+  border-radius: 16px;
+}
+
+.container-cards{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.card-header{
+  background-color: rgb(36, 36, 36);
+  color: #4ebcd4;
+  font-size: 16px;
+  border-radius: 16px 16px 0 0;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
   body {
-    color: rgb(22, 22, 22);
-    background: rgb(231, 231, 231);
+    color: rgb(231, 231, 231);
+    background: rgb(19, 19, 19);
   }
 }
