@@ -41,9 +41,20 @@ a {
 
 .card-header{
   background-color: rgb(36, 36, 36);
-  color: #4ebcd4;
   font-size: 16px;
+  color: #21D4FD;
   border-radius: 16px 16px 0 0;
+}
+.title-button{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.send{
+  color: #287e00;
+}
+.error{
+  color: #c70000;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -28,21 +28,6 @@ export default function Register() {
             }),
         });
 
-        const envioEmail = await fetch('http://localhost:8080/send-email', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                "emailFrom": "isabela.fiap0710@gmail.com",
-                "emailTo": "isabela.fiap0710@gmail.com",
-                "subject": "Cadastro de produto com sucesso",
-                "text": `Nome: ${nome}\n Descrição: ${descricao}\n Valor: R$ ${valor}\n ${disponivel? 'Disponível em estoque': 'Indisponível no estoque'}`
-              }),
-            redirect: 'follow'
-        });
-
         if (request.status === 201 || request.status === 200 && envioEmail.status === 200) {
             setMensagem("Produto cadastrado")
         } else {
@@ -54,6 +39,9 @@ export default function Register() {
 
     function mostrarAviso() {
         if (mensagem != '') {
+            if(mensagem == "Produto cadastrado"){
+                document.getElementById("form-product").reset();
+            }
             return (
 
                 <Alert color="primary">
@@ -68,7 +56,7 @@ export default function Register() {
 
             {mostrarAviso()}
             <h3>Cadastro de produtos</h3>
-            <Form>
+            <Form id="form-product">
                 <FormGroup>
                     <Label for="nomeProduto">
                         Nome

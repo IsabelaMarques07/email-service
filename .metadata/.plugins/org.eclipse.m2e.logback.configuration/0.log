@@ -76,3 +76,4 @@
 2022-09-28 15:24:41,886 [Worker-4: Launching EmailApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2022-09-28 15:24:41,886 [Worker-4: Launching EmailApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
 2022-09-28 15:24:41,886 [Worker-4: Launching EmailApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Isabela\sprint-ms-api\email\src\test\resources
+2022-09-29 10:54:52,322 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.

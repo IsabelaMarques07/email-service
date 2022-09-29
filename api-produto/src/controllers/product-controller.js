@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const repository = require('../repositories/product-repository');
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 exports.get = async(req, res, next)=>{
     const data = await repository.getProduct();
@@ -9,6 +10,22 @@ exports.get = async(req, res, next)=>{
 exports.post = async(req, res, next)=>{
     try {
         await repository.create(req.body);
+
+        await fetch('http://localhost:8080/send-email', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                "emailFrom": "isabela.fiap0710@gmail.com",
+                "emailTo": "isabela.fiap0710@gmail.com",
+                "subject": "Cadastro de produto com sucesso",
+                "text": `Nome: ${req.body.nome}\n Descrição: ${req.body.descricao}\n Valor: R$ ${req.body.valor}\n ${req.body.disponivel? 'Disponível em estoque': 'Indisponível no estoque'}`
+              }),
+            redirect: 'follow'
+        });
+
         res.status(201).send({message: "Criado com sucesso!"});
     } catch (error) {
         res.status(400).send({message: 'erro ao cadastrar produto'})
