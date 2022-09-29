@@ -21,7 +21,7 @@ exports.post = async(req, res, next)=>{
                 "emailFrom": "isabela.fiap0710@gmail.com",
                 "emailTo": "isabela.fiap0710@gmail.com",
                 "subject": "Cadastro de produto com sucesso",
-                "text": `Nome: ${req.body.nome}\n Descrição: ${req.body.descricao}\n Valor: R$ ${req.body.valor}\n ${req.body.disponivel? 'Disponível em estoque': 'Indisponível no estoque'}`
+                "text": `Nome: ${req.body.title}\n Descrição: ${req.body.description}\n Valor: R$ ${req.body.price}\n ${req.body.active? 'Disponível em estoque': 'Indisponível no estoque'}`
               }),
             redirect: 'follow'
         });
