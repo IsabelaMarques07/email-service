@@ -27,7 +27,10 @@ export default function Products() {
         });
     
         if (rawResponse.status === 200) {
-          await setMessage('Produto sem estoque!');
+          setMessage('Produto fora de estoque!')
+          setTimeout(() => {
+            setMessage('')
+          }, 3000);
           getProducts();
         }
       }
@@ -66,12 +69,14 @@ export default function Products() {
                                 <ToastBody>
                                     <p>Descrição: {product.description}</p>
                                     <p>Preço: R${product.price}</p>
-                                    <p>{product.active ? 'Disponível' : 'Indisponível'}</p>
+                                    <p>Produto {product.active ? 'disponível' : 'indisponível'}</p>
                                     <Button 
-                                        color={product.active? "danger" : "secondary"}
+                                        className={product.active? '' : 'indisponivel'}
+                                        color="danger"
                                         size='sm' 
                                         active={product.active}
                                         onClick={product.active? () => deleteProduct(product._id) : null}
+                                        
                                         >
                                             Indisponibilizar
                                     </Button>
@@ -101,6 +106,7 @@ export default function Products() {
         <>
             {mostrarAviso()}
             <h1>Produtos</h1>
+            
             <div className="your-required-wrapper" style={{width: '60%', height: 30, marginLeft: '20%'}}>
         <SwitchSelector
             onChange={onChange}

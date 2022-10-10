@@ -4,6 +4,7 @@ import SwitchSelector from "react-switch-selector";
 export default function Emails() {
 
     const [emailsList, setEmailsList] = useState([]);
+    const [emailsFiltered, setEmailsFiltered] = useState(null);
     const [option, setOption] = useState({status:'SEND'});
 
     useEffect   (() => {
@@ -18,10 +19,15 @@ export default function Emails() {
 
 
     function retornarEmails() {
-
+        let emails = null;
         if (emailsList != undefined) {
+            if(emailsFiltered != null){
+                emails = emailsFiltered;
+            }else{
+                emails = emailsList;
+            }
             return(
-                emailsList.map(email => {
+                emails.map(email => {
                     if(option.status == email.statusEmail){
                         return (
                             <Toast className= "card">
@@ -32,7 +38,7 @@ export default function Emails() {
                                 <ToastBody>
                                     <p>De: {email.emailFrom}</p>
                                     <p>Para: {email.emailTo}</p>
-                                    <p>Data: {email.sendDateEmail}</p>
+                                    <p>Data: {new Date(email.sendDateEmail).toLocaleDateString("pt-BR")}</p>
                                 </ToastBody>
                             </Toast>
                         )
@@ -71,8 +77,23 @@ export default function Emails() {
 
     return (
         <>
-            <h1>Emails</h1>
-            
+            <div className='header-title'>
+                <h1>Emails</h1>
+                <input
+                className="pesquisa"
+                placeholder="Busque um produto pelo nome"
+                type="date"
+                onChange={({ target }) => {
+                    setEmailsFiltered(
+                    emailsList.filter((e) =>
+                        e.sendDateEmail
+                        .toLocaleLowerCase()
+                        .includes(target.value.toLocaleLowerCase()),
+                    ),
+                    );
+                }}
+                ></input>
+            </div>
             <div className="your-required-wrapper" style={{width: '60%', height: 30, marginLeft: '20%'}}>
         <SwitchSelector
             onChange={onChange}

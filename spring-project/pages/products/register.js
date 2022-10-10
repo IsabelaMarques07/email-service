@@ -29,7 +29,11 @@ export default function Register() {
         });
 
         if (request.status === 201 || request.status === 200 && envioEmail.status === 200) {
-            setMensagem("Produto cadastrado")
+            setMensagem("Produto cadastrado com sucesso! Você será redirecionado para a lista de produtos")
+            setTimeout(() => {
+                window.location.href = "/products"
+            }, 2000);
+            
         } else {
             console.log(request.status)
             setMensagem("Erro ao cadastrar. Revise os dados e tente novamente")
